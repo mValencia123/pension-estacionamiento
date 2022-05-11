@@ -13,14 +13,14 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const initialForm = {
-        "email" : null,
-        "password" : null
+        "email" : "",
+        "password" : ""
     };
 
     const[form,useForm] = useState(initialForm);
 
     const handleClickLogin = () => {
-        if (form.email === null || form.password === null || form.email === "" || form.password === "") {
+        if ([form.email,form.password].includes("")) {
             return alert("Revisa los campos, please");
         }
         dispatch(logIn());
@@ -28,7 +28,6 @@ const Login = () => {
 
     const handleChangeInput = (e) => {
         e.preventDefault();
-        console.log(e);
         useForm({
             ...form,
             [`${e.target.name}`] : e.target.value

@@ -1,30 +1,31 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import {logOut} from '../state/park/parkSlice.js'
 import logo from '../assets/images/imagen-encabezado.png'
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-const navigation = [
-  { name: 'Pagina Principal', href: '/pagina-principal', current: true },
-  { name: 'Vehiculos', href: '/vehiculos', current: false },
-  { name: 'Clientes', href: '/clientes', current: false },
-  { name: 'Pagos', href: '/pagos', current: false },
-  { name: 'Check In/Out', href: '/check', current: false },
-]
-const userNavigation = [
-  { name: 'Sign out', href: '#' },
-]
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { navigation, userNavigation, user } from './navigation/userNavigation'
+import classNames from '../helpers/convertTextToClasses.jsx'
 
 const NavBar = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClickRoute = (e) =>{
+    navigation.forEach(route => route.name === e.target.name ? route.current = true : route.current = false);
+    const route = navigation.find(route => route.name === e.target.name);
+    console.log(route);
+    navigate(route.href);
+  }
+
+  
+  const handleClickLogOut = () => {
+    console.log("click bye");
+    dispatch(logOut());
+  }
+
     return(
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -43,8 +44,9 @@ const NavBar = () => {
                         <div className="ml-10 flex items-baseline space-x-4">
                           {navigation.map((item) => (
                             <a
+                              onClick={handleClickRoute}
                               key={item.name}
-                              href={item.href}
+                              name={item.name}
                               className={classNames(
                                 item.current
                                   ? 'bg-gray-900 text-white'
@@ -91,12 +93,11 @@ const NavBar = () => {
                                 <Menu.Item key={item.name}>
                                   {({ active }) => (
                                     <a
-                                      href={item.href}
                                       className={classNames(
                                         active ? 'bg-gray-100' : '',
                                         'block px-4 py-2 text-sm text-gray-700'
                                       )}
-                                      onClick = {logOut}
+                                      onClick = {handleClickLogOut}
                                     >
                                       {item.name}
                                     </a>
