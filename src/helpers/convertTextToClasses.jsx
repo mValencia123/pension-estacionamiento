@@ -1,3 +1,3 @@
-const classNames = (...classes) => classes.filter(Boolean).join(' ');
+const convertTextToClasses = (...classes) => classes.filter(Boolean).join(' ');
 
-export default classNames;
+export default convertTextToClasses;

@@ -6,7 +6,7 @@ import logo from '../assets/images/imagen-encabezado.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { navigation, userNavigation, user } from './navigation/userNavigation'
-import classNames from '../helpers/convertTextToClasses.jsx'
+import convertTextToClasses from '../helpers/convertTextToClasses.jsx'
 
 const NavBar = () => {
 
@@ -47,7 +47,7 @@ const NavBar = () => {
                               onClick={handleClickRoute}
                               key={item.name}
                               name={item.name}
-                              className={classNames(
+                              className={convertTextToClasses(
                                 item.current
                                   ? 'bg-gray-900 text-white'
                                   : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -93,7 +93,7 @@ const NavBar = () => {
                                 <Menu.Item key={item.name}>
                                   {({ active }) => (
                                     <a
-                                      className={classNames(
+                                      className={convertTextToClasses(
                                         active ? 'bg-gray-100' : '',
                                         'block px-4 py-2 text-sm text-gray-700'
                                       )}
@@ -130,7 +130,7 @@ const NavBar = () => {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className={classNames(
+                        className={convertTextToClasses(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'block px-3 py-2 rounded-md text-base font-medium'
                         )}

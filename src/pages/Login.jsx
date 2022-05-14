@@ -7,6 +7,8 @@ import { Boton } from "../components/Boton";
 import { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { logIn } from '../state/park/parkSlice'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Login = () => {
 
@@ -21,7 +23,12 @@ const Login = () => {
 
     const handleClickLogin = () => {
         if ([form.email,form.password].includes("")) {
-            return alert("Revisa los campos, please");
+            return Swal.fire({
+                title: 'Error',
+                text: 'Llena todos los campos.',
+                icon: 'error',
+                confirmButtonText: 'Entendido'
+              })
         }
         dispatch(logIn());
     }

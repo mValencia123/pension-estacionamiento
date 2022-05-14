@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const parkSlice = createSlice({
   name: 'park',
   initialState: {
-    logged: localStorage.getItem("logged") || false,
+    logged: localStorage.getItem("logged") ? localStorage.getItem("logged") : false,
     email : ""
   },
   reducers: {

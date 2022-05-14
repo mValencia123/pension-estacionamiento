@@ -4,15 +4,11 @@ import { FormGroup } from "../components/FormGroup";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
-export const Vehicles = () => {
+export const Pays = () => {
 
     const initialForm = {
-        "placas" : "",
-        "color" : "",
-        "tarjeta" : 0,
-        "marca" : "",
-        "modelo" : "",
-        "anio" : ""
+        "cliente" : "",
+        "cantidad" : 0
     };
 
     const[form,useForm] = useState(initialForm);
@@ -39,12 +35,8 @@ export const Vehicles = () => {
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div className="mx-auto flex border-2 border-solid border-gray-400 shadow-xl p-5 rounded-xl">
                 <Form handleSubmitForm={handleSubmitForm}>
-                    <FormGroup textLabel = "Placas" type = "text" handleChangeInput = {handleChangeInput} name = "placas"/>
-                    <FormGroup textLabel = "Color" type = "text" handleChangeInput = {handleChangeInput} name = "color"/>
-                    <FormGroup textLabel = "Tarjeta" type = "number" handleChangeInput = {handleChangeInput} name = "tarjeta"/>
-                    <FormGroup textLabel = "Marca" type = "text" handleChangeInput = {handleChangeInput} name = "marca"/>
-                    <FormGroup textLabel = "Modelo" type = "text" handleChangeInput = {handleChangeInput} name = "modelo"/>
-                    <FormGroup textLabel = "Año" type = "number" handleChangeInput = {handleChangeInput} name = "anio"/>
+                    <FormGroup textLabel = "Cliente" type = "text" handleChangeInput = {handleChangeInput} name = "cliente"/>
+                    <FormGroup textLabel = "Pago" type = "number" handleChangeInput = {handleChangeInput} name = "cantidad"/>
                 </Form>
             </div>
         </div>
